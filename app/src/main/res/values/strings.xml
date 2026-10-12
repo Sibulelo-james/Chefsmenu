@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Chef\'s Menu Manager</string>
+    <string name="title_menu_manager">Chef\'s Menu Manager</string>
+
+    <!-- Statistics -->
+    <string name="stats_title">Menu Statistics</string>
+    <string name="stats_total_items">Total Items</string>
+    <string name="stats_avg_price">Avg Price</string>
+    <string name="stats_starters">Starters</string>
+    <string name="stats_mains">Mains</string>
+    <string name="stats_desserts">Desserts</string>
+
+    <!-- Search & Filter -->
+    <string name="search_hint">Search menu item by name…</string>
+    <string name="filter_all">All</string>
+    <string name="course_starter">Starter</string>
+    <string name="course_main">Main Course</string>
+    <string name="course_dessert">Dessert</string>
+    <string name="clear_search">Clear</string>
+
+    <!-- Dish Form -->
+    <string name="add_dish_title">Add New Dish</string>
+    <string name="edit_dish_title">Edit Dish</string>
+    <string name="label_dish_name">Dish Name *</string>
+    <string name="label_description">Description *</string>
+    <string name="label_course">Course *</string>
+    <string name="label_price">Price (R) *</string>
+    <string name="select_course_hint">Select Course</string>
+    <string name="btn_save">Save Dish</string>
+    <string name="btn_cancel">Cancel</string>
+
+    <!-- Empty State -->
+    <string name="empty_state_title">No Menu Items Available</string>
+    <string name="empty_state_desc">Tap the + button below to add a new menu item, or clear your search/filter.</string>
+
+    <!-- Confirmations & Errors -->
+    <string name="error_dish_name_required">Dish name is required</string>
+    <string name="error_description_required">Description is required</string>
+    <string name="error_course_required">Please select a course</string>
+    <string name="error_invalid_price">Please enter a valid price (e.g. 120.50)</string>
+    <string name="msg_dish_added">Menu item added successfully!</string>
+    <string name="msg_dish_updated">Menu item updated successfully!</string>
+    <string name="msg_dish_deleted">Menu item deleted successfully!</string>
+
+    <!-- Delete Dialog -->
+    <string name="delete_confirm_title">Delete Menu Item</string>
+    <string name="delete_confirm_msg">Are you sure you want to delete \"%1$s\" from the menu?</string>
+    <string name="btn_delete">Delete</string>
+</resources>

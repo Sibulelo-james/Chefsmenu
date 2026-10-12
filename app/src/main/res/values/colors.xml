@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Primary Theme Colors (Culinary Burgundy / Warm Theme) -->
+    <color name="primary">#8C1D40</color>
+    <color name="primary_dark">#5C0624</color>
+    <color name="primary_light">#FFD8E4</color>
+    <color name="accent_gold">#E09F3E</color>
+
+    <!-- Neutral Colors -->
+    <color name="bg_light">#F8F9FA</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="text_primary">#212529</color>
+    <color name="text_secondary">#6C757D</color>
+    <color name="border_color">#E0E0E0</color>
+
+    <!-- Course Badge Colors -->
+    <color name="starter_bg">#E3F2FD</color>
+    <color name="starter_text">#1565C0</color>
+    <color name="main_bg">#E8F5E9</color>
+    <color name="main_text">#2E7D32</color>
+    <color name="dessert_bg">#FCE4EC</color>
+    <color name="dessert_text">#C2185B</color>
+
+    <!-- Stat card accents -->
+    <color name="stat_card_bg">#FFF8E1</color>
+    <color name="stat_icon_tint">#D97706</color>
+    <color name="delete_red">#D32F2F</color>
+</resources>
