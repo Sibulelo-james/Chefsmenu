@@ -1,7 +1,8 @@
 # Chef's Menu Manager 🍽️
 
 **Developer**: Sibulelo-james  
-**Repository**: [https://github.com/Sibulelo-james/Chefsmenu](https://github.com/Sibulelo-james/Chefsmenu)
+**Repository**: [https://github.com/Sibulelo-james/Chefsmenu](https://github.com/Sibulelo-james/Chefsmenu)  
+**Live Website**: [https://sibulelo-james.github.io/Chefsmenu/](https://sibulelo-james.github.io/Chefsmenu/)
 
 Chef's Menu Manager is a modern, intuitive Android application designed for chefs and restaurant managers to seamlessly manage menu items across multiple courses. Built with Java and Material Design 3, the app offers complete menu management, real-time analytics, filtering, and persistent local storage.
 

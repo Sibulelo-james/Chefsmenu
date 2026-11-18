@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chef's Menu Manager | Modern Android App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #faf8f5;
+            --card-bg: #ffffff;
+            --text-primary: #111111;
+            --text-secondary: #666666;
+            --accent: #ff6b35;
+            --accent-hover: #e05524;
+            --secondary-btn: #efece6;
+            --secondary-btn-hover: #e2ded6;
+            --badge-starter: #e3f2fd;
+            --badge-starter-text: #1976d2;
+            --badge-main: #e8f5e9;
+            --badge-main-text: #2e7d32;
+            --badge-dessert: #f3e5f5;
+            --badge-dessert-text: #7b1fa2;
+            --border-radius-lg: 24px;
+            --border-radius-md: 16px;
+            --border-radius-sm: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 4px 14px rgba(255, 107, 53, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-header {
+            background-color: var(--accent);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.25);
+        }
+
+        .btn-header:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 40px 8% 80px 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            max-width: 580px;
+        }
+
+        .tagline {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 800;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 36px;
+            font-weight: 500;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-btn);
+            color: var(--text-primary);
+            padding: 16px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-btn-hover);
+        }
+
+        /* Metrics */
+        .metrics {
+            display: flex;
+            gap: 48px;
+        }
+
+        .metric-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .metric-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* App Preview Mockup Card */
+        .preview-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-mockup {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            border-radius: 36px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+            padding: 24px;
+            border: 8px solid #222222;
+            position: relative;
+        }
+
+        .mockup-header {
+            text-align: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 16px;
+        }
+
+        .mockup-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .mockup-subtitle {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Stats Card Inside Mockup */
+        .mockup-stats-card {
+            background: #fff8f5;
+            border: 1px solid #ffe6dc;
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .mockup-stat-box {
+            background: #ffffff;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .mockup-stat-val {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--accent);
+        }
+
+        .mockup-stat-lbl {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Chips */
+        .mockup-chips {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+        }
+
+        .chip {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .chip-active {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .chip-inactive {
+            background-color: #f0f0f0;
+            color: var(--text-secondary);
+        }
+
+        /* Dish Cards Inside Mockup */
+        .dish-card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .dish-info h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .dish-info p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: 700;
+        }
+
+        .badge-starter { background: var(--badge-starter); color: var(--badge-starter-text); }
+        .badge-main { background: var(--badge-main); color: var(--badge-main-text); }
+        .badge-dessert { background: var(--badge-dessert); color: var(--badge-dessert-text); }
+
+        .dish-price {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        /* Floating Badge Callouts */
+        .floating-badge {
+            position: absolute;
+            background: #ffffff;
+            padding: 12px 20px;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .badge-top-left {
+            top: 20px;
+            left: -20px;
+        }
+
+        .badge-bottom-right {
+            bottom: 20px;
+            right: -20px;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 80px 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 60px auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 36px;
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #f0eee8;
+            transition: transform 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            background: #fff0ea;
+            color: var(--accent);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #ffffff;
+            border-top: 1px solid #ebebeb;
+            padding: 40px 8%;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .metrics {
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .badge-top-left, .badge-bottom-right {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-icon">🍽️</div>
+            <span>Chef's Menu</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#preview">App View</a></li>
+            <li><a href="https://github.com/Sibulelo-james/Chefsmenu" target="_blank">GitHub Repo</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="https://github.com/Sibulelo-james/Chefsmenu" target="_blank" class="btn-header">View Repository</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="tagline">SMART RESTAURANT & MENU MANAGEMENT</span>
+            <h1 class="hero-title">Manage your culinary offerings with ease.</h1>
+            <p class="hero-description">
+                A modern Android application engineered with Java and Material Design 3. Effortlessly create, filter, edit, and analyze menu items with real-time statistics and local data persistence.
+            </p>
+            <div class="hero-cta">
+                <a href="https://github.com/Sibulelo-james/Chefsmenu" target="_blank" class="btn-primary">View on GitHub</a>
+                <a href="#features" class="btn-secondary">Explore Features</a>
+            </div>
+            <div class="metrics">
+                <div class="metric-item">
+                    <span class="metric-number">100%</span>
+                    <span class="metric-label">Offline Persistence</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">Material 3</span>
+                    <span class="metric-label">Expressive UI</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-number">Real-time</span>
+                    <span class="metric-label">Menu Metrics</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phone App Preview -->
+        <div class="preview-container" id="preview">
+            <div class="floating-badge badge-top-left">
+                <span>🔥</span>
+                <span>Live Filter & Search</span>
+            </div>
+
+            <div class="phone-mockup">
+                <div class="mockup-header">
+                    <div class="mockup-title">Chef's Menu Manager</div>
+                    <div class="mockup-subtitle">3 Menu Items Total</div>
+                </div>
+
+                <!-- Live Metrics Card -->
+                <div class="mockup-stats-card">
+                    <div class="mockup-stat-box">
+                        <div class="mockup-stat-val">R 165.00</div>
+                        <div class="mockup-stat-lbl">Average Price</div>
+                    </div>
+                    <div class="mockup-stat-box">
+                        <div class="mockup-stat-val">1S · 1M · 1D</div>
+                        <div class="mockup-stat-lbl">Course Breakdown</div>
+                    </div>
+                </div>
+
+                <!-- Filter Chips -->
+                <div class="mockup-chips">
+                    <span class="chip chip-active">All (3)</span>
+                    <span class="chip chip-inactive">Starter (1)</span>
+                    <span class="chip chip-inactive">Main Course (1)</span>
+                    <span class="chip chip-inactive">Dessert (1)</span>
+                </div>
+
+                <!-- Dishes List -->
+                <div class="dish-card">
+                    <div class="dish-info">
+                        <h4>Bruschetta</h4>
+                        <p>Toasted garlic bread topped with fresh tomatoes</p>
+                        <span class="badge badge-starter">Starter</span>
+                    </div>
+                    <div class="dish-price">R 85.00</div>
+                </div>
+
+                <div class="dish-card">
+                    <div class="dish-info">
+                        <h4>Grilled Salmon</h4>
+                        <p>Atlantic salmon served with asparagus</p>
+                        <span class="badge badge-main">Main Course</span>
+                    </div>
+                    <div class="dish-price">R 260.00</div>
+                </div>
+
+                <div class="dish-card">
+                    <div class="dish-info">
+                        <h4>Tiramisu</h4>
+                        <p>Classic Italian espresso-flavored dessert</p>
+                        <span class="badge badge-dessert">Dessert</span>
+                    </div>
+                    <div class="dish-price">R 150.00</div>
+                </div>
+            </div>
+
+            <div class="floating-badge badge-bottom-right">
+                <span>⚡</span>
+                <span>Persistent Local Storage</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="section-header">
+            <h2>Designed for Efficiency & Elegance</h2>
+            <p>Built using modern Android architecture, type-safe ViewBinding, and clean repository patterns.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3>Full Menu CRUD</h3>
+                <p>Easily capture dish name, description, course category, and price in ZAR currency. Edit or remove items safely with confirmation dialogs.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Live Search & Filters</h3>
+                <p>Search dishes dynamically as you type or filter category lists instantly using Material 3 chip groups.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Real-Time Statistics</h3>
+                <p>Monitor kitchen metrics effortlessly with live average price calculations and course category breakdown counts.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💾</div>
+                <h3>JSON Offline Persistence</h3>
+                <p>Integrated SharedPreferences and JSON serialization ensure your restaurant's menu data stays saved across app restarts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Chef's Menu Manager by <a href="https://github.com/Sibulelo-james" target="_blank">Sibulelo-james</a>. Hosted on <a href="https://github.com/Sibulelo-james/Chefsmenu" target="_blank">GitHub Pages</a>.</p>
+    </footer>
+
+</body>
+</html>
