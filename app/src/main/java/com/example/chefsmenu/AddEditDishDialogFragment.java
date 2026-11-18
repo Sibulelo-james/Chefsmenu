@@ -138,14 +138,23 @@ public class AddEditDishDialogFragment extends BottomSheetDialogFragment {
         if (dishName.isEmpty()) {
             binding.tilDishName.setError(getString(R.string.error_dish_name_required));
             isValid = false;
+        } else if (dishName.length() > 60) {
+            binding.tilDishName.setError(getString(R.string.error_dish_name_too_long));
+            isValid = false;
         }
 
         if (description.isEmpty()) {
             binding.tilDescription.setError(getString(R.string.error_description_required));
             isValid = false;
+        } else if (description.length() > 300) {
+            binding.tilDescription.setError(getString(R.string.error_description_too_long));
+            isValid = false;
         }
 
-        if (course.isEmpty()) {
+        boolean validCourse = course.equals(getString(R.string.course_starter))
+                || course.equals(getString(R.string.course_main))
+                || course.equals(getString(R.string.course_dessert));
+        if (!validCourse) {
             binding.tilCourse.setError(getString(R.string.error_course_required));
             isValid = false;
         }
@@ -157,7 +166,7 @@ public class AddEditDishDialogFragment extends BottomSheetDialogFragment {
         } else {
             try {
                 price = Double.parseDouble(priceStr);
-                if (price <= 0) {
+                if (!Double.isFinite(price) || price <= 0 || price > 100000) {
                     binding.tilPrice.setError(getString(R.string.error_invalid_price));
                     isValid = false;
                 }

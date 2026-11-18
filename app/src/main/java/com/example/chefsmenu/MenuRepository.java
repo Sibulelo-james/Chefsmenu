@@ -119,12 +119,14 @@ public class MenuRepository {
 
     public List<MenuItem> filterAndSearch(String query, String courseFilter) {
         List<MenuItem> filteredList = new ArrayList<>();
-        String normalizedQuery = (query != null) ? query.trim().toLowerCase() : "";
-        boolean filterCourse = courseFilter != null && !courseFilter.equals("All");
+        String normalizedQuery = (query != null) ? query.trim().toLowerCase(java.util.Locale.ROOT) : "";
+        boolean filterCourse = courseFilter != null && !courseFilter.equalsIgnoreCase("All");
 
         for (MenuItem item : menuItemsList) {
-            boolean matchesName = normalizedQuery.isEmpty() || item.getDishName().toLowerCase().contains(normalizedQuery);
-            boolean matchesCourse = !filterCourse || item.getCourse().equalsIgnoreCase(courseFilter);
+            boolean matchesName = normalizedQuery.isEmpty()
+                    || item.getDishName().toLowerCase(java.util.Locale.ROOT).contains(normalizedQuery);
+            boolean matchesCourse = !filterCourse
+                    || item.getCourse().equalsIgnoreCase(courseFilter);
 
             if (matchesName && matchesCourse) {
                 filteredList.add(item);

@@ -38,6 +38,8 @@
     <string name="error_description_required">Description is required</string>
     <string name="error_course_required">Please select a course</string>
     <string name="error_invalid_price">Please enter a valid price (e.g. 120.50)</string>
+    <string name="error_dish_name_too_long">Dish name must be 60 characters or fewer</string>
+    <string name="error_description_too_long">Description must be 300 characters or fewer</string>
     <string name="msg_dish_added">Menu item added successfully!</string>
     <string name="msg_dish_updated">Menu item updated successfully!</string>
     <string name="msg_dish_deleted">Menu item deleted successfully!</string>
