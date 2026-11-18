@@ -17,20 +17,6 @@ Chef's Menu Manager is a modern, intuitive Android application designed for chef
 
 ---
 
-## 🛠️ Refactoring & Change Log
-
-| Phase | Category | Description |
-|---|---|---|
-| **Part 2 Initial** | Core Application | Initial dish creation, list view, form validation, and empty state screen. |
-| **Final PoE** | Data Persistence | Integrated `SharedPreferences` + JSON serialization for permanent offline data retention. |
-| **Final PoE** | Modern UI | Refactored add/edit form into a modern `BottomSheetDialogFragment` with dynamic error handling. |
-| **Final PoE** | Item Management | Added editing capability for existing items and deletion safety via `MaterialAlertDialogBuilder`. |
-| **Final PoE** | Search & Filter | Added real-time text search and single-select course filtering chips. |
-| **Final PoE** | Analytics | Added real-time dashboard calculations (Total items, average price, course breakdown). |
-| **Final PoE** | Architecture | Standardized repository pattern, ViewBinding, and clean code formatting. |
-
----
-
 ## 🚀 Getting Started
 
 ### Prerequisites
