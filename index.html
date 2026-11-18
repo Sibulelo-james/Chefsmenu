@@ -3,656 +3,611 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chef's Menu Manager | Modern Android App</title>
+    <title>Chef's Menu Manager — Live App Demo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #faf8f5;
-            --card-bg: #ffffff;
-            --text-primary: #111111;
-            --text-secondary: #666666;
-            --accent: #ff6b35;
-            --accent-hover: #e05524;
-            --secondary-btn: #efece6;
-            --secondary-btn-hover: #e2ded6;
+            --primary: #6750a4;
+            --primary-container: #eaddff;
+            --on-primary-container: #21005d;
+            --surface: #fef7ff;
+            --surface-variant: #e7e0ec;
+            --on-surface: #1d1b20;
+            --on-surface-variant: #49454f;
+            --outline: #79747e;
+            --bg-page: #f4f0fa;
+
             --badge-starter: #e3f2fd;
-            --badge-starter-text: #1976d2;
+            --badge-starter-text: #0d47a1;
             --badge-main: #e8f5e9;
-            --badge-main-text: #2e7d32;
+            --badge-main-text: #1b5e20;
             --badge-dessert: #f3e5f5;
-            --badge-dessert-text: #7b1fa2;
-            --border-radius-lg: 24px;
-            --border-radius-md: 16px;
-            --border-radius-sm: 10px;
+            --badge-dessert-text: #4a148c;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 24px 8%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 800;
-            font-size: 1.25rem;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--accent);
-            color: white;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            box-shadow: 0 4px 14px rgba(255, 107, 53, 0.3);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .btn-header {
-            background-color: var(--accent);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.25);
-        }
-
-        .btn-header:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            padding: 40px 8% 80px 8%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .hero-content {
-            max-width: 580px;
-        }
-
-        .tagline {
-            color: var(--accent);
-            text-transform: uppercase;
-            font-weight: 800;
-            font-size: 0.85rem;
-            letter-spacing: 1.5px;
-            margin-bottom: 16px;
-            display: inline-block;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.15;
-            letter-spacing: -1.5px;
-            margin-bottom: 24px;
-            color: var(--text-primary);
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 36px;
-            font-weight: 500;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 48px;
-        }
-
-        .btn-primary {
-            background-color: var(--accent);
-            color: white;
-            padding: 16px 32px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background-color: var(--secondary-btn);
-            color: var(--text-primary);
-            padding: 16px 32px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--secondary-btn-hover);
-        }
-
-        /* Metrics */
-        .metrics {
-            display: flex;
-            gap: 48px;
-        }
-
-        .metric-item {
+            background-color: var(--bg-page);
+            color: var(--on-surface);
             display: flex;
             flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 16px 40px;
         }
 
-        .metric-number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--text-primary);
-        }
-
-        .metric-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        /* App Preview Mockup Card */
-        .preview-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .phone-mockup {
+        .header-bar {
             width: 100%;
-            max-width: 420px;
-            background: #ffffff;
-            border-radius: 36px;
-            box-shadow: 0 24px 60px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
-            padding: 24px;
-            border: 8px solid #222222;
-            position: relative;
-        }
-
-        .mockup-header {
-            text-align: center;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #f0f0f0;
-            margin-bottom: 16px;
-        }
-
-        .mockup-title {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--text-primary);
-        }
-
-        .mockup-subtitle {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        /* Stats Card Inside Mockup */
-        .mockup-stats-card {
-            background: #fff8f5;
-            border: 1px solid #ffe6dc;
-            border-radius: 16px;
-            padding: 14px;
-            margin-bottom: 16px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .mockup-stat-box {
-            background: #ffffff;
-            padding: 10px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-        }
-
-        .mockup-stat-val {
-            font-weight: 800;
-            font-size: 1.1rem;
-            color: var(--accent);
-        }
-
-        .mockup-stat-lbl {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        /* Chips */
-        .mockup-chips {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-            overflow-x: auto;
-        }
-
-        .chip {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-
-        .chip-active {
-            background-color: var(--accent);
-            color: white;
-        }
-
-        .chip-inactive {
-            background-color: #f0f0f0;
-            color: var(--text-secondary);
-        }
-
-        /* Dish Cards Inside Mockup */
-        .dish-card {
-            background: #ffffff;
-            border: 1px solid #eaeaea;
-            border-radius: 16px;
-            padding: 14px;
-            margin-bottom: 12px;
+            max-width: 480px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            margin-bottom: 16px;
         }
 
-        .dish-info h4 {
-            font-size: 0.95rem;
+        .repo-link {
+            text-decoration: none;
+            color: var(--primary);
             font-weight: 700;
-            margin-bottom: 4px;
+            font-size: 0.9rem;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
 
-        .dish-info p {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.65rem;
-            font-weight: 700;
-        }
-
-        .badge-starter { background: var(--badge-starter); color: var(--badge-starter-text); }
-        .badge-main { background: var(--badge-main); color: var(--badge-main-text); }
-        .badge-dessert { background: var(--badge-dessert); color: var(--badge-dessert-text); }
-
-        .dish-price {
-            font-size: 1rem;
-            font-weight: 800;
-            color: var(--text-primary);
-        }
-
-        /* Floating Badge Callouts */
-        .floating-badge {
-            position: absolute;
+        /* Phone App Frame */
+        .app-frame {
+            width: 100%;
+            max-width: 440px;
             background: #ffffff;
-            padding: 12px 20px;
-            border-radius: 16px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-            font-weight: 700;
-            font-size: 0.85rem;
+            border-radius: 32px;
+            box-shadow: 0 16px 40px rgba(103, 80, 164, 0.12), 0 4px 12px rgba(0,0,0,0.05);
+            border: 6px solid #2b2930;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Top App Bar */
+        .app-bar {
+            background: var(--surface);
+            padding: 20px 20px 12px 20px;
+            border-bottom: 1px solid var(--surface-variant);
+        }
+
+        .app-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--on-surface);
             display: flex;
             align-items: center;
             gap: 10px;
-            z-index: 10;
         }
 
-        .badge-top-left {
-            top: 20px;
-            left: -20px;
+        .app-subtitle {
+            font-size: 0.8rem;
+            color: var(--on-surface-variant);
+            font-weight: 600;
+            margin-top: 2px;
         }
 
-        .badge-bottom-right {
-            bottom: 20px;
-            right: -20px;
+        .app-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-height: 680px;
+            overflow-y: auto;
         }
 
-        /* Features Section */
-        .features-section {
-            padding: 80px 8%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 650px;
-            margin: 0 auto 60px auto;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-        }
-
-        .features-grid {
+        /* Stats Card */
+        .stats-card {
+            background: var(--primary-container);
+            color: var(--on-primary-container);
+            border-radius: 20px;
+            padding: 16px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
         }
 
-        .feature-card {
-            background: var(--card-bg);
-            padding: 36px;
-            border-radius: var(--border-radius-lg);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            border: 1px solid #f0eee8;
+        .stat-box {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 14px;
+            padding: 10px 12px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--on-primary-container);
+        }
+
+        .stat-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--on-surface-variant);
+            margin-top: 2px;
+        }
+
+        /* Search Input */
+        .search-box {
+            width: 100%;
+            background: var(--surface-variant);
+            border: none;
+            padding: 12px 18px;
+            border-radius: 28px;
+            font-size: 0.9rem;
+            outline: none;
+            color: var(--on-surface);
+        }
+
+        .search-box::placeholder {
+            color: var(--on-surface-variant);
+        }
+
+        /* Filter Chips */
+        .chips-container {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .chip-btn {
+            background: var(--surface-variant);
+            color: var(--on-surface-variant);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .chip-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Menu List */
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .dish-item {
+            background: #ffffff;
+            border: 1px solid var(--surface-variant);
+            border-radius: 18px;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: transform 0.15s ease;
+        }
+
+        .dish-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .dish-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            max-width: 240px;
+        }
+
+        .dish-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--on-surface);
+        }
+
+        .dish-desc {
+            font-size: 0.78rem;
+            color: var(--on-surface-variant);
+            line-height: 1.3;
+        }
+
+        .course-badge {
+            align-self: flex-start;
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            margin-top: 4px;
+        }
+
+        .badge-Starter { background: var(--badge-starter); color: var(--badge-starter-text); }
+        .badge-Main-Course { background: var(--badge-main); color: var(--badge-main-text); }
+        .badge-Dessert { background: var(--badge-dessert); color: var(--badge-dessert-text); }
+
+        .dish-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .dish-price {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .dish-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-action {
+            background: var(--surface-variant);
+            border: none;
+            padding: 4px 8px;
+            border-radius: 8px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--on-surface);
+        }
+
+        .btn-action.delete {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        /* Floating Add FAB */
+        .fab {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 22px;
+            border-radius: 28px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(103, 80, 164, 0.35);
             transition: transform 0.2s ease;
         }
 
-        .feature-card:hover {
-            transform: translateY(-4px);
+        .fab:hover {
+            transform: scale(1.04);
         }
 
-        .feature-icon {
-            width: 52px;
-            height: 52px;
-            background: #fff0ea;
-            color: var(--accent);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Footer */
-        footer {
-            background: #ffffff;
-            border-top: 1px solid #ebebeb;
-            padding: 40px 8%;
+        /* Empty State */
+        .empty-state {
             text-align: center;
-            color: var(--text-secondary);
+            padding: 40px 20px;
+            color: var(--on-surface-variant);
             font-size: 0.9rem;
             font-weight: 600;
         }
 
-        footer a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 700;
+        /* Dialog Modal */
+        .modal-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4);
+            display: none;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 100;
         }
 
-        /* Responsive Design */
-        @media (max-width: 968px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
+        .modal-card {
+            background: white;
+            width: 100%;
+            border-radius: 28px 28px 0 0;
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.15);
+            animation: slideUp 0.25s ease;
+        }
 
-            .hero-content {
-                margin: 0 auto;
-            }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
 
-            .hero-title {
-                font-size: 2.5rem;
-            }
+        .modal-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+        }
 
-            .hero-cta {
-                justify-content: center;
-            }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
 
-            .metrics {
-                justify-content: center;
-            }
+        .input-group label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--on-surface-variant);
+        }
 
-            .nav-links {
-                display: none;
-            }
+        .input-group input, .input-group select {
+            padding: 10px 14px;
+            border: 1px solid var(--outline);
+            border-radius: 12px;
+            font-size: 0.85rem;
+            outline: none;
+        }
 
-            .badge-top-left, .badge-bottom-right {
-                display: none;
-            }
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .btn-modal {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .btn-cancel {
+            background: var(--surface-variant);
+            color: var(--on-surface);
+        }
+
+        .btn-save {
+            background: var(--primary);
+            color: white;
+        }
+
+        footer {
+            margin-top: 24px;
+            font-size: 0.82rem;
+            color: var(--on-surface-variant);
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="#" class="logo">
-            <div class="logo-icon">🍽️</div>
-            <span>Chef's Menu</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#preview">App View</a></li>
-            <li><a href="https://github.com/Sibulelo-james/Chefsmenu" target="_blank">GitHub Repo</a></li>
-        </ul>
-        <div class="nav-actions">
-            <a href="https://github.com/Sibulelo-james/Chefsmenu" target="_blank" class="btn-header">View Repository</a>
-        </div>
-    </nav>
+    <div class="header-bar">
+        <span style="font-weight: 800; font-size: 1.1rem;">🍽️ Chef's Menu Manager</span>
+        <a href="https://github.com/Sibulelo-james/Chefsmenu" target="_blank" class="repo-link">View Source Code</a>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <span class="tagline">SMART RESTAURANT & MENU MANAGEMENT</span>
-            <h1 class="hero-title">Manage your culinary offerings with ease.</h1>
-            <p class="hero-description">
-                A modern Android application engineered with Java and Material Design 3. Effortlessly create, filter, edit, and analyze menu items with real-time statistics and local data persistence.
-            </p>
-            <div class="hero-cta">
-                <a href="https://github.com/Sibulelo-james/Chefsmenu" target="_blank" class="btn-primary">View on GitHub</a>
-                <a href="#features" class="btn-secondary">Explore Features</a>
-            </div>
-            <div class="metrics">
-                <div class="metric-item">
-                    <span class="metric-number">100%</span>
-                    <span class="metric-label">Offline Persistence</span>
-                </div>
-                <div class="metric-item">
-                    <span class="metric-number">Material 3</span>
-                    <span class="metric-label">Expressive UI</span>
-                </div>
-                <div class="metric-item">
-                    <span class="metric-number">Real-time</span>
-                    <span class="metric-label">Menu Metrics</span>
-                </div>
-            </div>
+    <!-- Phone Interface Frame -->
+    <div class="app-frame">
+        <div class="app-bar">
+            <div class="app-title">🍽️ Chef's Menu Manager</div>
+            <div class="app-subtitle" id="totalCountSubtitle">3 items total</div>
         </div>
 
-        <!-- Phone App Preview -->
-        <div class="preview-container" id="preview">
-            <div class="floating-badge badge-top-left">
-                <span>🔥</span>
-                <span>Live Filter & Search</span>
-            </div>
-
-            <div class="phone-mockup">
-                <div class="mockup-header">
-                    <div class="mockup-title">Chef's Menu Manager</div>
-                    <div class="mockup-subtitle">3 Menu Items Total</div>
+        <div class="app-body">
+            <!-- Real-time Statistics Card -->
+            <div class="stats-card">
+                <div class="stat-box">
+                    <div class="stat-value" id="avgPriceText">R 165.00</div>
+                    <div class="stat-label">Average Price</div>
                 </div>
-
-                <!-- Live Metrics Card -->
-                <div class="mockup-stats-card">
-                    <div class="mockup-stat-box">
-                        <div class="mockup-stat-val">R 165.00</div>
-                        <div class="mockup-stat-lbl">Average Price</div>
-                    </div>
-                    <div class="mockup-stat-box">
-                        <div class="mockup-stat-val">1S · 1M · 1D</div>
-                        <div class="mockup-stat-lbl">Course Breakdown</div>
-                    </div>
-                </div>
-
-                <!-- Filter Chips -->
-                <div class="mockup-chips">
-                    <span class="chip chip-active">All (3)</span>
-                    <span class="chip chip-inactive">Starter (1)</span>
-                    <span class="chip chip-inactive">Main Course (1)</span>
-                    <span class="chip chip-inactive">Dessert (1)</span>
-                </div>
-
-                <!-- Dishes List -->
-                <div class="dish-card">
-                    <div class="dish-info">
-                        <h4>Bruschetta</h4>
-                        <p>Toasted garlic bread topped with fresh tomatoes</p>
-                        <span class="badge badge-starter">Starter</span>
-                    </div>
-                    <div class="dish-price">R 85.00</div>
-                </div>
-
-                <div class="dish-card">
-                    <div class="dish-info">
-                        <h4>Grilled Salmon</h4>
-                        <p>Atlantic salmon served with asparagus</p>
-                        <span class="badge badge-main">Main Course</span>
-                    </div>
-                    <div class="dish-price">R 260.00</div>
-                </div>
-
-                <div class="dish-card">
-                    <div class="dish-info">
-                        <h4>Tiramisu</h4>
-                        <p>Classic Italian espresso-flavored dessert</p>
-                        <span class="badge badge-dessert">Dessert</span>
-                    </div>
-                    <div class="dish-price">R 150.00</div>
+                <div class="stat-box">
+                    <div class="stat-value" id="breakdownText">1S · 1M · 1D</div>
+                    <div class="stat-label">Course Breakdown</div>
                 </div>
             </div>
 
-            <div class="floating-badge badge-bottom-right">
-                <span>⚡</span>
-                <span>Persistent Local Storage</span>
-            </div>
-        </div>
-    </section>
+            <!-- Search Bar -->
+            <input type="text" id="searchInput" class="search-box" placeholder="🔍 Search dish name..." aria-label="Search dish name" oninput="renderDishes()">
 
-    <!-- Features Section -->
-    <section class="features-section" id="features">
-        <div class="section-header">
-            <h2>Designed for Efficiency & Elegance</h2>
-            <p>Built using modern Android architecture, type-safe ViewBinding, and clean repository patterns.</p>
+            <!-- Category Filter Chips -->
+            <div class="chips-container">
+                <button class="chip-btn active" onclick="setFilter('All', this)">All</button>
+                <button class="chip-btn" onclick="setFilter('Starter', this)">Starters</button>
+                <button class="chip-btn" onclick="setFilter('Main Course', this)">Main Courses</button>
+                <button class="chip-btn" onclick="setFilter('Dessert', this)">Desserts</button>
+            </div>
+
+            <!-- Dishes List -->
+            <div class="menu-list" id="menuList"></div>
         </div>
 
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">📝</div>
-                <h3>Full Menu CRUD</h3>
-                <p>Easily capture dish name, description, course category, and price in ZAR currency. Edit or remove items safely with confirmation dialogs.</p>
-            </div>
+        <!-- Floating Add Button -->
+        <button class="fab" onclick="openModal()">➕ Add Dish</button>
 
-            <div class="feature-card">
-                <div class="feature-icon">🔍</div>
-                <h3>Live Search & Filters</h3>
-                <p>Search dishes dynamically as you type or filter category lists instantly using Material 3 chip groups.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>Real-Time Statistics</h3>
-                <p>Monitor kitchen metrics effortlessly with live average price calculations and course category breakdown counts.</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">💾</div>
-                <h3>JSON Offline Persistence</h3>
-                <p>Integrated SharedPreferences and JSON serialization ensure your restaurant's menu data stays saved across app restarts.</p>
+        <!-- Add/Edit Modal -->
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal-card">
+                <div class="modal-title" id="modalTitle">Add Menu Item</div>
+                <div class="input-group">
+                    <label>Dish Name</label>
+                    <input type="text" id="dishNameInput" placeholder="e.g. Grilled Salmon">
+                </div>
+                <div class="input-group">
+                    <label>Description</label>
+                    <input type="text" id="dishDescInput" placeholder="e.g. Served with fresh lemon & herbs">
+                </div>
+                <div class="input-group">
+                    <label>Course</label>
+                    <select id="dishCourseSelect">
+                        <option value="Starter">Starter</option>
+                        <option value="Main Course" selected>Main Course</option>
+                        <option value="Dessert">Dessert</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Price (ZAR - R)</label>
+                    <input type="number" id="dishPriceInput" placeholder="e.g. 185">
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-modal btn-cancel" onclick="closeModal()">Cancel</button>
+                    <button class="btn-modal btn-save" onclick="saveDish()">Save Dish</button>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2024 Chef's Menu Manager by <a href="https://github.com/Sibulelo-james" target="_blank">Sibulelo-james</a>. Hosted on <a href="https://github.com/Sibulelo-james/Chefsmenu" target="_blank">GitHub Pages</a>.</p>
-    </footer>
+    <footer>Developed by Sibulelo-james • Android App Demo</footer>
 
+    <script>
+        let dishes = [
+            { id: 1, name: "Bruschetta", desc: "Toasted garlic bread topped with tomatoes & basil", course: "Starter", price: 85.00 },
+            { id: 2, name: "Grilled Salmon", desc: "Atlantic salmon served with tender asparagus", course: "Main Course", price: 260.00 },
+            { id: 3, name: "Tiramisu", desc: "Classic Italian espresso-flavored layered dessert", course: "Dessert", price: 150.00 }
+        ];
+
+        let currentFilter = 'All';
+        let editingDishId = null;
+
+        function setFilter(course, btn) {
+            currentFilter = course;
+            document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderDishes();
+        }
+
+        function renderDishes() {
+            const search = document.getElementById('searchInput').value.toLowerCase().trim();
+            const listContainer = document.getElementById('menuList');
+
+            const filtered = dishes.filter(d => {
+                const matchesCourse = (currentFilter === 'All' || d.course === currentFilter);
+                const matchesSearch = d.name.toLowerCase().includes(search);
+                return matchesCourse && matchesSearch;
+            });
+
+            updateStats();
+
+            if (filtered.length === 0) {
+                listContainer.innerHTML = `<div class="empty-state">No dishes match your current search or filter.</div>`;
+                return;
+            }
+
+            listContainer.innerHTML = filtered.map(d => `
+                <div class="dish-item">
+                    <div class="dish-left">
+                        <div class="dish-name">${escapeHtml(d.name)}</div>
+                        <div class="dish-desc">${escapeHtml(d.desc)}</div>
+                        <span class="course-badge badge-${d.course.replace(' ', '-')}">${d.course}</span>
+                    </div>
+                    <div class="dish-right">
+                        <div class="dish-price">R ${d.price.toFixed(2)}</div>
+                        <div class="dish-actions">
+                            <button class="btn-action" onclick="editDish(${d.id})">Edit</button>
+                            <button class="btn-action delete" onclick="deleteDish(${d.id})">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateStats() {
+            document.getElementById('totalCountSubtitle').innerText = `${dishes.length} items total`;
+
+            if (dishes.length === 0) {
+                document.getElementById('avgPriceText').innerText = "R 0.00";
+                document.getElementById('breakdownText').innerText = "0S · 0M · 0D";
+                return;
+            }
+
+            const total = dishes.reduce((sum, d) => sum + d.price, 0);
+            const avg = total / dishes.length;
+            document.getElementById('avgPriceText').innerText = `R ${avg.toFixed(2)}`;
+
+            const starters = dishes.filter(d => d.course === 'Starter').length;
+            const mains = dishes.filter(d => d.course === 'Main Course').length;
+            const desserts = dishes.filter(d => d.course === 'Dessert').length;
+
+            document.getElementById('breakdownText').innerText = `${starters}S · ${mains}M · ${desserts}D`;
+        }
+
+        function openModal() {
+            editingDishId = null;
+            document.getElementById('modalTitle').innerText = 'Add Menu Item';
+            document.getElementById('dishNameInput').value = '';
+            document.getElementById('dishDescInput').value = '';
+            document.getElementById('dishCourseSelect').value = 'Main Course';
+            document.getElementById('dishPriceInput').value = '';
+            document.getElementById('modalOverlay').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+
+        function saveDish() {
+            const name = document.getElementById('dishNameInput').value.trim();
+            const desc = document.getElementById('dishDescInput').value.trim();
+            const course = document.getElementById('dishCourseSelect').value;
+            const price = parseFloat(document.getElementById('dishPriceInput').value);
+
+            if (!name || !desc || isNaN(price) || price <= 0) {
+                alert('Please enter a valid dish name, description, and price.');
+                return;
+            }
+
+            if (editingDishId !== null) {
+                const idx = dishes.findIndex(d => d.id === editingDishId);
+                if (idx !== -1) {
+                    dishes[idx] = { id: editingDishId, name, desc, course, price };
+                }
+            } else {
+                dishes.push({ id: Date.now(), name, desc, course, price });
+            }
+
+            closeModal();
+            renderDishes();
+        }
+
+        function editDish(id) {
+            const dish = dishes.find(d => d.id === id);
+            if (!dish) return;
+
+            editingDishId = id;
+            document.getElementById('modalTitle').innerText = 'Edit Menu Item';
+            document.getElementById('dishNameInput').value = dish.name;
+            document.getElementById('dishDescInput').value = dish.desc;
+            document.getElementById('dishCourseSelect').value = dish.course;
+            document.getElementById('dishPriceInput').value = dish.price;
+            document.getElementById('modalOverlay').style.display = 'flex';
+        }
+
+        function deleteDish(id) {
+            if (confirm('Are you sure you want to delete this menu item?')) {
+                dishes = dishes.filter(d => d.id !== id);
+                renderDishes();
+            }
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        }
+
+        // Initial render
+        renderDishes();
+    </script>
 </body>
 </html>
